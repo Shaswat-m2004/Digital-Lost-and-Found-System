@@ -1,9 +1,43 @@
-# Digital-Lost-and-Found-System
-This standalone application is developed using Python(tkinter) and mysql as the database
+from tkinter import Tk, Toplevel, Text, Scrollbar, Frame,Label
 
-In the system each user can login and can register there valuable belonging 
-Once a user logs in into the system they will get a Registration code which they can stick to there belongings
+class requestsspage:
+    def __init__(self, master):
+        self.master = Toplevel()
+        self.master.geometry("1031x733")
+        self.master.configure(bg="#D9D9D9")
+        self.master.title("Registration")
+        self.setup_ui()
 
+    def setup_ui(self):
+        self.header_label = Label(
+            self.master,
+            text="USER MANUAL",
+            bg="#FFFFFF",
+            fg="#000000",
+            font=("Arial", 25, "bold")
+        )
+        self.header_label.pack(pady=10)
+
+        self.frame = Frame(self.master, bg="#D9D9D9")
+        self.frame.pack(fill="both", expand=True)
+
+        self.text_area = Text(
+            self.frame,
+            bg="#D9D9D9",  # Set the background color to match the rectangle
+            wrap="word",
+            bd=5,
+            highlightthickness=0,
+            relief="raised"
+        )
+        self.text_area.pack(side="left", fill="both", expand=True,padx=(20,0))
+
+        self.scrollbar = Scrollbar(self.frame, orient="vertical", command=self.text_area.yview)
+        self.scrollbar.pack(side="right", fill="y")
+
+        self.text_area.configure(yscrollcommand=self.scrollbar.set)
+
+        self.text_area.insert("end", "USER MANUAL\n\n")
+        self.text_area.insert("end"," "*40+'''Foundmate User Manual
 
 1. Introduction
 
@@ -80,4 +114,53 @@ Ensure all fields are filled correctly before submitting the registration detail
 Password strength and email format are validated to enhance security.
 OTP is sent via email for verification purposes to ensure the validity of the provided email address.
 Mobile number and name are validated to ensure accuracy in user details.
-Once registered, users can log in using their email and password on the login page. \n\n'''
+Once registered, users can log in using their email and password on the login page. \n\n''')
+
+        self.text_area.insert("end", ''' 
+Manual for User Login Page
+Introduction
+The user login page of the Foundmate application allows registered users to log in to their accounts using their email address and password. This manual provides an overview of the features and functionalities of the user login page.
+
+Features
+Email Input Field: Users can enter their email address in the designated text box.
+Password Input Field: Users can enter their password in the password text box.
+Login Button: Allows users to submit their login credentials and access their account.
+Forgot Password Button: Allows users to navigate to the forgot password page to reset their password.
+Registration Button: Allows new users to navigate to the registration page to create a new account.
+Usage
+Email Input: Enter your registered email address in the provided text box.
+Password Input: Enter your password in the password text box.
+Login: Click the "Login" button to submit your login credentials and access your account.
+Forgot Password: If you have forgotten your password, click the "Forgot Password" button to navigate to the password reset page.
+Registration: If you are a new user, click the "Register" button to navigate to the registration page and create a new account.
+Error Handling
+Invalid Credentials: If the entered email address or password is incorrect, an error message will be displayed.
+Empty Fields: If any of the fields are left empty, an error message will prompt the user to fill in all required fields.
+Security
+Password Encryption: User passwords are securely encrypted using the bcrypt hashing algorithm to ensure data security.
+Database Access: User login credentials are verified against the database records stored securely on the server.
+Navigation
+Forgot Password Page: Clicking the "Forgot Password" button navigates the user to the forgot password page where they can reset their password.
+Registration Page: Clicking the "Register" button navigates new users to the registration page where they can create a new account.
+Compatibility
+Browser Compatibility: The user login page is compatible with all modern web browsers, including Chrome, Firefox, Safari, and Edge.
+Device Compatibility: The user login page is responsive and compatible with various devices, including desktops, laptops, tablets, and smartphones.
+Troubleshooting
+If you encounter any issues while logging in, please ensure:
+
+Your email address and password are entered correctly.
+Caps Lock is turned off as passwords are case-sensitive.
+You have a stable internet connection.
+You are using a compatible web browser.
+If you forgot your password, use the "Forgot Password" feature to reset it.
+For further assistance or inquiries, please contact our support team at support@foundmate.com.\n\n''')
+
+
+    def showRequestss(self):
+        self.master.wait_window(self.master)
+
+if __name__ == "__main__":
+    master = Tk()
+    app = requestsspage(master)
+    master.resizable(False, False)
+    master.mainloop()
